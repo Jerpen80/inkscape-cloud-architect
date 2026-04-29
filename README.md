@@ -8,6 +8,7 @@ Make Inkscape a professional Cloud Visualization Studio for Cloud Architects.
 
 - AWS Symbol Sets
 - AWS Diagram Templates
+- AWS Auto Diagram Extension
 
 ![All AWS symbols](docs/images/all-symbols2.png)
 
@@ -17,22 +18,35 @@ Make Inkscape a professional Cloud Visualization Studio for Cloud Architects.
 
 ## Install
 
-Clone repo.
-
-Build symbols and install all symbols and templates in current users inkscape folder.
+Clone repo. Build symbols and install all assets (symbols, templates, extension) to the current user's Inkscape folder.
 
 ```
 git clone https://github.com/mipmip/inkscape-cloud-architect
 cd inkscape-cloud-architect
-make all
+./RUNME.sh all
+```
+
+Install individual deliverables:
+
+```
+./RUNME.sh symbols_build      # Build SVG symbols from AWS asset zip
+./RUNME.sh symbols_install    # Install symbols to Inkscape
+./RUNME.sh templates_install  # Install templates to Inkscape
+./RUNME.sh extension_install  # Install extension to Inkscape
 ```
 
 ## Remove
 
-Remove all install assets:
+Remove all installed assets:
 
 ```
-make clean
+./RUNME.sh clean
+```
+
+Remove awslabs repo cache (separate, slow to rebuild):
+
+```
+./RUNME.sh symbols_clean_cache
 ```
 
 ## Usage

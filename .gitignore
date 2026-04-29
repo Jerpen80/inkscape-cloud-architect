@@ -2,3 +2,5 @@
 .temp.seed
 .aider*
 __pycache__
+.font_metrics_cache.json
+account-data
