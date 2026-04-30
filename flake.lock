@@ -1,0 +1,61 @@
+{
+  "nodes": {
+    "cloudia-reader-aws": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1774008958,
+        "narHash": "sha256-ZMuDGHnS2xhNH7u8aThPlwWj50TcPJiCYGKLwvadRcQ=",
+        "owner": "wearetechnative",
+        "repo": "cloudia-reader-aws",
+        "rev": "00ad539a17fc7aa30a19d2b02e68a926f75194df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wearetechnative",
+        "repo": "cloudia-reader-aws",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1741822597,
+        "narHash": "sha256-ToQZtW0u7s12b4DYA2/mvc/u7xAdM9J+6A73n6rb7IA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "2f8a52a3d2d601d49a25127e574597b335144c57",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1748370509,
+        "narHash": "sha256-QlL8slIgc16W5UaI3w7xHQEP+Qmv/6vSNTpoZrrSlbk=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "4faa5f5321320e49a78ae7848582f684d64783e9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "cloudia-reader-aws": "cloudia-reader-aws",
+        "nixpkgs": "nixpkgs_2"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

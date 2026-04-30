@@ -1,0 +1,279 @@
+document:
+  margin: 20
+
+theme:
+  light:
+    background: "none"
+    text_color: "#000000"
+    text_dimmed_opacity: 0.6
+    border_account: "#000000"
+    border_edge: "#7B61FF"
+    border_vpc: "#8c4fff"
+    border_subnet_public: "#7aa116"
+    border_subnet_private: "#00a4a6"
+    border_region: "#00a4a6"
+  dark:
+    background: "#232F3E"
+    text_color: "#e0e0e0"
+    text_dimmed_opacity: 0.5
+    border_account: "#e0e0e0"
+    border_edge: "#9B81FF"
+    border_vpc: "#8c4fff"
+    border_subnet_public: "#7aa116"
+    border_subnet_private: "#00a4a6"
+    border_region: "#00a4a6"
+
+layout:
+  mode: spaced
+  spaced:
+    account:
+      padding:
+        top: 270
+        right: 130
+        bottom: 65
+        left: 130
+    vpc:
+      padding:
+        top: 100
+        right: 40
+        bottom: 40
+        left: 40
+      gap: 50
+    subnet:
+      min_width: 240
+      height: 120
+      col_gap: 30
+      row_gap: 30
+    ec2:
+      icon_scale: 1.0
+      font_size: 17
+      card_gap: 15
+      card_top: 15
+    database:
+      icon_scale: 1.0
+      font_size: 17
+      card_gap: 15
+      card_top: 15
+    eks:
+      icon_scale: 1.0
+      font_size: 17
+      card_height: 50
+      card_gap: 15
+      span_line_color: "#FF9900"
+      span_line_width: 1.0
+      span_line_dasharray: "4,4"
+    lambda_function:
+      icon_scale: 1.0
+      font_size: 17
+      card_height: 50
+      card_gap: 15
+      card_padding: 4
+      span_line_color: "#FF9900"
+      span_line_width: 1.0
+      span_line_dasharray: "4,4"
+    load_balancer:
+      icon_scale: 1.0
+      font_size: 17
+      card_height: 50
+      card_gap: 15
+      span_line_color: "#ED7100"
+      span_line_width: 1.0
+      span_line_dasharray: "4,4"
+    asg:
+      icon_scale: 1.0
+      stroke_color: "#ED7100"
+      stroke_width: 0.5
+      stroke_dasharray: "4,4"
+      label_height: 50
+      padding: 10
+      top_margin: 15
+      font_size: 17
+    nat_gateway:
+      icon_scale: 1.0
+      font_size: 17
+      card_gap: 15
+      card_top: 15
+    s3:
+      icon_scale: 1.0
+      font_size: 17
+      card_gap: 10
+      card_padding: 6
+    dynamodb:
+      icon_scale: 1.0
+      font_size: 17
+      card_gap: 10
+      card_padding: 6
+    edge:
+      padding:
+        top: 80
+        right: 40
+        bottom: 30
+        left: 30
+      column_gap: 60
+      bottom_spacing: 40
+    route53:
+      icon_scale: 1.0
+      font_size: 17
+      card_gap: 10
+      card_padding: 6
+      card_height: 50
+    cloudfront:
+      icon_scale: 1.0
+      font_size: 17
+      card_gap: 10
+      card_padding: 6
+    internet_gateway:
+      icon_scale: 1.0
+      font_size: 17
+    region:
+      padding:
+        top: 150
+        right: 60
+        bottom: 60
+        left: 60
+      gap: 40
+    availability_zone:
+      enabled: true
+      label_prefix: ""
+      padding:
+        top: 70
+        bottom: 50
+        sides: 15
+      stroke_color: "#00a4a6"
+      stroke_width: 0.5
+      stroke_dasharray: "8,8"
+    legend:
+      icon_scale: 1.0
+      font_size: 15
+      item_gap: 30
+      row_gap: 15
+      section_gap: 25
+      top_spacing: 60
+      swatch_width: 40
+      swatch_height: 20
+  dense:
+    account:
+      padding:
+        top: 50
+        right: 20
+        bottom: 20
+        left: 20
+    vpc:
+      padding:
+        top: 60
+        right: 15
+        bottom: 15
+        left: 15
+      gap: 25
+    subnet:
+      min_width: 120
+      height: 50
+      col_gap: 10
+      row_gap: 15
+    ec2:
+      icon_scale: 0.5
+      font_size: 13
+      card_gap: 8
+      card_top: 10
+    database:
+      icon_scale: 0.5
+      font_size: 13
+      card_gap: 8
+      card_top: 10
+    eks:
+      icon_scale: 0.5
+      font_size: 13
+      card_height: 30
+      card_gap: 8
+      span_line_color: "#FF9900"
+      span_line_width: 1.0
+      span_line_dasharray: "4,4"
+    lambda_function:
+      icon_scale: 0.5
+      font_size: 13
+      card_height: 30
+      card_gap: 8
+      card_padding: 4
+      span_line_color: "#FF9900"
+      span_line_width: 1.0
+      span_line_dasharray: "4,4"
+    load_balancer:
+      icon_scale: 0.5
+      font_size: 13
+      card_height: 30
+      card_gap: 8
+      span_line_color: "#ED7100"
+      span_line_width: 1.0
+      span_line_dasharray: "4,4"
+    asg:
+      icon_scale: 0.35
+      stroke_color: "#ED7100"
+      stroke_width: 0.5
+      stroke_dasharray: "4,4"
+      label_height: 28
+      padding: 6
+      top_margin: 10
+      font_size: 11
+    nat_gateway:
+      icon_scale: 0.5
+      font_size: 13
+      card_gap: 8
+      card_top: 10
+    s3:
+      icon_scale: 0.5
+      font_size: 13
+      card_gap: 6
+      card_padding: 4
+    dynamodb:
+      icon_scale: 0.5
+      font_size: 13
+      card_gap: 6
+      card_padding: 4
+    edge:
+      padding:
+        top: 50
+        right: 20
+        bottom: 15
+        left: 15
+      column_gap: 40
+      bottom_spacing: 20
+    route53:
+      icon_scale: 0.5
+      font_size: 13
+      card_gap: 6
+      card_padding: 4
+      card_height: 30
+    cloudfront:
+      icon_scale: 0.5
+      font_size: 13
+      card_gap: 6
+      card_padding: 4
+    internet_gateway:
+      icon_scale: 0.5
+      font_size: 13
+    region:
+      padding:
+        top: 100
+        right: 30
+        bottom: 30
+        left: 30
+      gap: 20
+    availability_zone:
+      enabled: true
+      label_prefix: ""
+      padding:
+        top: 50
+        bottom: 40
+        sides: 8
+      stroke_color: "#00a4a6"
+      stroke_width: 0.5
+      stroke_dasharray: "8,8"
+    legend:
+      icon_scale: 0.5
+      font_size: 11
+      item_gap: 15
+      row_gap: 10
+      section_gap: 15
+      top_spacing: 30
+      swatch_width: 25
+      swatch_height: 12
