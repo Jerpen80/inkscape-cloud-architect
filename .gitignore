@@ -4,3 +4,9 @@
 __pycache__
 .font_metrics_cache.json
 account-data
+
+# Customer data / generated diagrams — NEVER commit (see incident 2026-06-09)
+OUTPUT/
+output*.svg
+cost-report*.md
+test-data.json
