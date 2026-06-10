@@ -102,12 +102,18 @@ test_install(){
   return $failed
 }
 
+make_command "test_config_schema" "Test: config schema coverage, validation, preset_varying, defaults."
+test_config_schema(){
+  python3 "$RUNME_DIR/extensions/aws-auto-diagram/tests/test_config_schema.py"
+}
+
 make_command "test_all" "Run all tests."
 test_all(){
   local failed=0
   test_usage || failed=1
   test_inkscape_dir || failed=1
   test_install || failed=1
+  test_config_schema || failed=1
   if [[ $failed -eq 0 ]]; then
     echo -e "\nAll tests passed."
   else
