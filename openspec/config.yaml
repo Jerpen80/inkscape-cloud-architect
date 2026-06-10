@@ -1,20 +1,43 @@
 schema: spec-driven
 
-# Project context (optional)
-# This is shown to AI when creating artifacts.
-# Add your tech stack, conventions, style guides, domain knowledge, etc.
-# Example:
-#   context: |
-#     Tech stack: TypeScript, React, Node.js
-#     We use conventional commits
-#     Domain: e-commerce platform
+context: |
+  Project: inkscape-cloud-architect (ICA) — generates AWS architecture diagrams
+  as SVG from cloudia account-data dumps.
 
-# Per-artifact rules (optional)
-# Add custom rules for specific artifacts.
-# Example:
-#   rules:
-#     proposal:
-#       - Keep proposals under 500 words
-#       - Always include a "Non-goals" section
-#     tasks:
-#       - Break tasks into chunks of max 2 hours
+  Tech stack:
+  - Python 3 (the rendering engine and the planned `ica` CLI/TUI)
+  - inkex as a standalone SVG-tree library (NOT the Inkscape application) —
+    rendering is pure Python; no Inkscape process is launched
+  - YAML config (default-config.yaml + optional user override, deep-merged)
+  - Nix flake devshell (run commands via `nix develop`); pytest is NOT available
+  - jj (Jujutsu) for version control, colocated with git
+
+  Delivery:
+  - Ships as an Inkscape extension (.inx) AND, in progress, a headless `ica`
+    command installed via the flake. One shared semver line (currently v1.x).
+  - Front-ends call one shared render engine; the Inkscape path and the headless
+    path must stay behavior-identical.
+
+  Product language:
+  - Write specs in terms of observable diagram/CLI behavior and the config contract
+  - Put internal mechanisms (engine wiring, inkex internals) in design.md/tasks.md
+    unless the mechanism is itself the user-facing contract
+
+rules:
+  specs:
+    - Prefer observable behavior (what the diagram/CLI does) over implementation detail
+    - Refactors that must not change output MUST state a byte-identical SVG requirement
+      with a golden-output scenario
+    - Config keys are addressed in engine (flattened) form, e.g. layout.ec2.icon_scale,
+      not the raw preset form layout.spaced.ec2.icon_scale
+  tasks:
+    - Run tests and headless renders via `nix develop` (the devshell has inkex)
+    - Always include a headless test step after extension/engine changes
+    - Tests are no-pytest self-checking Python scripts wired into RUNME.d/50-tests.sh
+    - Never write rendered output or account-data into the repo work tree
+      (OUTPUT/, output*.svg, cost-report*.md, test-data.json are gitignored) — render
+      to /tmp; the only local account-data is real customer data
+  design:
+    - inkex is a Python SVG library; do not assume an Inkscape process is involved
+    - Note the one inkex call (bounding_box) that may need a render backend; verify headless
+    - Keep defaults in default-config.yaml as the single source; schemas describe, not duplicate

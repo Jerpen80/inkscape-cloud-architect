@@ -1,10 +1,12 @@
 ---
 # inkscape-cloud-architect-ciwl
 title: '10 thin seam: extract render(data,cfg)->svg engine'
-status: todo
+status: completed
 type: task
+priority: normal
+openspec-link: openspec/changes/archive/2026-06-12-thin-seam-render-engine
 created_at: 2026-06-10T13:25:59Z
-updated_at: 2026-06-10T13:25:59Z
+updated_at: 2026-06-12T10:00:00Z
 parent: inkscape-cloud-architect-muex
 ---
 

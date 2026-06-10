@@ -15,8 +15,6 @@ extension_run(){
   local theme="${5:-light}"
   local layout_mode="${6:-spaced}"
   local ext_dir="$RUNME_DIR/extensions/aws-auto-diagram"
-  local input_svg
-  input_svg=$(mktemp --suffix=.svg)
 
   # Check inkex is available
   if ! python3 -c "import inkex" 2>/dev/null; then
@@ -24,28 +22,26 @@ extension_run(){
     return 1
   fi
 
-  # Create minimal blank SVG
-  cat > "$input_svg" <<'SVGEOF'
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-     width="800" height="600" viewBox="0 0 800 600">
-  <defs/>
-</svg>
-SVGEOF
+  # Call the render engine directly (pure Python import, no subprocess, no
+  # blank-SVG dance). The engine returns SVG; we write it to $output.
+  ICA_DATA_DIR="$data_dir" ICA_REGION="$region" ICA_ACCOUNT_NAME="$account_name" \
+  ICA_THEME="$theme" ICA_LAYOUT_MODE="$layout_mode" ICA_OUTPUT="$output" \
+  PYTHONPATH="$ext_dir:${PYTHONPATH:-}" python3 - <<'PYEOF'
+import os
+from ica_utils.engine import render
 
-  # Run extension
-  PYTHONPATH="$ext_dir:${PYTHONPATH:-}" python3 "$ext_dir/aws-auto-diagram.py" \
-    --theme="$theme" \
-    --layout_mode="$layout_mode" \
-    --account_name="$account_name" \
-    --data_dir="$data_dir" \
-    --region="$region" \
-    --output="$output" \
-    "$input_svg"
+svg = render(
+    data_dir=os.environ["ICA_DATA_DIR"],
+    region=os.environ["ICA_REGION"],
+    account_name=os.environ.get("ICA_ACCOUNT_NAME", ""),
+    theme=os.environ.get("ICA_THEME", "light"),
+    layout_mode=os.environ.get("ICA_LAYOUT_MODE", "spaced"),
+)
+with open(os.environ["ICA_OUTPUT"], "w") as f:
+    f.write(svg)
+PYEOF
 
   local exit_code=$?
-  rm -f "$input_svg"
-
   if [[ $exit_code -eq 0 ]]; then
     echo "Output: $output"
   else
