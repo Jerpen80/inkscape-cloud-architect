@@ -351,3 +351,96 @@ def check_coverage(extension_dir):
     # extras: exact entries whose path is not a real key
     extra = sorted(p for p in _EXACT if p not in real)
     return missing, extra
+
+
+# --------------------------------------------------------------------------- #
+# CLI override building (used by `ica render`)
+# --------------------------------------------------------------------------- #
+
+
+def _set_nested(d, dotted_path, value):
+    """Set ``d[a][b][c] = value`` for a dotted path, creating dicts as needed."""
+    parts = dotted_path.split(".")
+    cur = d
+    for p in parts[:-1]:
+        nxt = cur.get(p)
+        if not isinstance(nxt, dict):
+            nxt = {}
+            cur[p] = nxt
+        cur = nxt
+    cur[parts[-1]] = value
+
+
+def parse_set_pairs(pairs):
+    """Turn ``["a.b=1", "c=x"]`` into a nested override dict ``{a:{b:"1"}, c:"x"}``.
+
+    Values are left as strings here; coercion to schema types happens separately
+    (``coerce_override``) so unknown keys can be reported as errors rather than
+    silently coerced. Raises ``ValueError`` on a pair lacking ``=``.
+    """
+    out = {}
+    for pair in pairs:
+        if "=" not in pair:
+            raise ValueError("invalid --set %r (expected key=value)" % pair)
+        key, value = pair.split("=", 1)
+        key = key.strip()
+        if not key:
+            raise ValueError("invalid --set %r (empty key)" % pair)
+        _set_nested(out, key, value)
+    return out
+
+
+def _coerce_string(field, raw):
+    """Coerce a raw string to the field's type. Returns (value, error)."""
+    if field.type == "int":
+        try:
+            return int(raw), None
+        except ValueError:
+            return None, "expected an integer"
+    if field.type == "float":
+        try:
+            return float(raw), None
+        except ValueError:
+            return None, "expected a number"
+    if field.type == "bool":
+        low = raw.strip().lower()
+        if low in ("true", "1", "yes", "on"):
+            return True, None
+        if low in ("false", "0", "no", "off"):
+            return False, None
+        return None, "expected a boolean (true/false)"
+    # color / str / enum pass through as strings; validate_value checks them
+    return raw, None
+
+
+def coerce_override(override, extension_dir):
+    """Coerce string-valued override leaves to their schema types.
+
+    Returns ``(coerced_dict, errors)``. Only leaves whose value is a string are
+    coerced (file-sourced overrides already have real types). Unknown keys are
+    reported as errors here, before validation. ``coerced_dict`` excludes any
+    leaf that errored.
+    """
+    schema = load_schema(extension_dir)
+    flat = _flatten(override) if override else {}
+    coerced = {}
+    errors = []
+    for path, value in flat.items():
+        rk = schema.get(path)
+        if rk is None:
+            errors.append(Error(path, "unknown config key"))
+            continue
+        cv = value
+        if isinstance(value, str) and rk.field is not None:
+            cv, msg = _coerce_string(rk.field, value)
+            if msg is not None:
+                errors.append(Error(path, msg))
+                continue
+        # validate the (coerced) value against the field — range/enum/type
+        if rk.field is not None:
+            msg = rk.field.validate_value(cv)
+            if msg is not None:
+                errors.append(Error(path, msg))
+                continue
+        _set_nested(coerced, path, cv)
+    return coerced, errors

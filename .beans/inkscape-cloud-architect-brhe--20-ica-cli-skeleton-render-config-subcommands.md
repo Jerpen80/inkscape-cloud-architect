@@ -1,11 +1,12 @@
 ---
 # inkscape-cloud-architect-brhe
 title: '20 ica CLI skeleton: render + config subcommands'
-status: in-progress
+status: completed
 type: task
 priority: normal
+openspec-link: openspec/changes/archive/2026-06-12-ica-cli
 created_at: 2026-06-10T13:26:17Z
-updated_at: 2026-06-12T12:05:12Z
+updated_at: 2026-06-12T12:30:00Z
 parent: inkscape-cloud-architect-muex
 blocked_by:
     - inkscape-cloud-architect-ciwl

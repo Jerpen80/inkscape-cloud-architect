@@ -1,10 +1,11 @@
 ---
 # inkscape-cloud-architect-fy5b
 title: '30 nix package ica: installable flake output'
-status: todo
+status: in-progress
 type: task
+priority: normal
 created_at: 2026-06-10T13:26:33Z
-updated_at: 2026-06-10T13:26:33Z
+updated_at: 2026-06-12T13:47:39Z
 parent: inkscape-cloud-architect-muex
 blocked_by:
     - inkscape-cloud-architect-brhe

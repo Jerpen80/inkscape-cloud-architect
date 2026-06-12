@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ica"
+version = "0.1.0"
+description = "Inkscape Cloud Architect — render AWS architecture diagrams as SVG"
+requires-python = ">=3.10"
+dependencies = [
+    "lxml",
+    "tinycss2",
+    "PyYAML",
+    "typer",
+    # inkex is provided by the environment (nixpkgs python3Packages.inkex);
+    # it is not on PyPI in a directly-installable form.
+]
+
+[project.scripts]
+ica = "ica_cli:app"
+
+# In-place layout: ica_cli is a top-level module, ica_utils is a package, and
+# default-config.yaml ships alongside them. aws-auto-diagram.py (the Inkscape
+# extension entry) is intentionally NOT packaged — it is used only by Inkscape.
+[tool.setuptools]
+py-modules = ["ica_cli"]
+packages = ["ica_utils"]
+
+[tool.setuptools.package-data]
+"*" = ["default-config.yaml"]
+
+[tool.setuptools.data-files]
+"." = ["default-config.yaml"]

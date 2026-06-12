@@ -10,3 +10,4 @@ OUTPUT/
 output*.svg
 cost-report*.md
 test-data.json
+result

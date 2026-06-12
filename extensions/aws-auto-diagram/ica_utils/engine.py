@@ -81,11 +81,16 @@ class RenderDoc:
     provides the equivalent surface from its own ``self``.
     """
 
-    def __init__(self, svg, config=None, options=None, symbol_dir=None):
+    def __init__(self, svg, config=None, options=None, symbol_dir=None, layout_override=None):
         self.svg = svg
         self.config = config
         self.options = options
         self.symbol_dir = symbol_dir
+        # Override applied AFTER resolve_layout_mode so flat layout.* overrides
+        # win over the selected preset (the preset is flattened into layout.* at
+        # resolve time and would otherwise clobber them). theme.*/document.*
+        # overrides are unaffected by resolve and merge cleanly here too.
+        self.layout_override = layout_override
 
     # --- symbol import (moved verbatim from the extension) ------------------ #
 
@@ -155,6 +160,11 @@ class RenderDoc:
 
         layout_mode = self.options.layout_mode or "spaced"
         resolve_layout_mode(self.config, layout_mode)
+
+        # Apply user overrides AFTER preset resolution so they win over the preset.
+        if self.layout_override:
+            from ica_utils.config import _deep_merge
+            self.config = _deep_merge(self.config, self.layout_override)
 
         theme_name = self.options.theme or "light"
         self.config["_theme"] = resolve_theme(theme_name, self.config)
@@ -429,20 +439,27 @@ _BLANK_SVG = (
 
 
 def render(data_dir, region, account_name="", theme="light", layout_mode="spaced",
-           symbol_dir=None, extension_dir=None):
+           symbol_dir=None, extension_dir=None, config=None, override=None):
     """Render a diagram headlessly and return the SVG as a string.
 
     No ``inkex.EffectExtension`` is instantiated and no Inkscape process is
     spawned. Writing the result to a file (and where) is the caller's concern.
+
+    ``config`` defaults to ``default-config.yaml`` + the mutable user override.
+    ``override`` (a flat-form dict, e.g. ``{"layout":{"ec2":{"icon_scale":0.8}}}``)
+    is applied AFTER preset resolution so it wins over the selected preset. The
+    Inkscape extension and file-based runner pass neither, so they are unchanged.
     """
     if extension_dir is None:
         extension_dir = str(Path(__file__).resolve().parent.parent)
 
-    config = load_config(extension_dir)
+    if config is None:
+        config = load_config(extension_dir)
     options = _Options(data_dir, region, account_name, theme, layout_mode)
 
     svg = inkex.load_svg(_BLANK_SVG).getroot()
-    doc = RenderDoc(svg, config=config, options=options, symbol_dir=symbol_dir)
+    doc = RenderDoc(svg, config=config, options=options, symbol_dir=symbol_dir,
+                    layout_override=override)
     doc.render()
 
     return svg.tostring().decode("utf-8") if isinstance(svg.tostring(), bytes) else svg.tostring()

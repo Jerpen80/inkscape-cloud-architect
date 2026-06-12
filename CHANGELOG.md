@@ -12,6 +12,11 @@
 - **config schema** — describe & validate all ~120 config keys (metadata only)
   - `ica_utils/config_schema.py`; defaults sourced from `default-config.yaml`.
   - See [proposal](openspec/changes/archive/2026-06-10-config-schema/proposal.md).
+- **ica CLI** — render diagrams + manage config from the command line
+  - `ica render` (with `--config` file and repeatable `--set key=value`,
+    type-coerced and validated against the schema before rendering) and
+    `ica initconf` (curated starter config). Typer-based, `--version`/`--help`.
+  - See [proposal](openspec/changes/archive/2026-06-12-ica-cli/proposal.md).
 
 ## v1.1.0 Dark Mode - 3 april 2025
 
