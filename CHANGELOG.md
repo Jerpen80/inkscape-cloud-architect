@@ -1,8 +1,16 @@
-# CHANGELOG.md
+# Changelog
 
-## v2.0.0 AWS Auto Diagram
+All notable changes to this project are documented in this file.
 
-- refactoring project dir
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+## [2.0.0] - 2026-06-12
+
+### Added
+
 - **headless render engine** — call rendering without the Inkscape runtime
   - Extracted orchestration into `ica_utils/engine.py` (`RenderDoc` + `render()`);
     the Inkscape extension is now a thin wrapper that delegates to it.
@@ -23,11 +31,24 @@
     templates into the Inkscape dir. AWS symbols are never redistributed.
   - See [proposal](openspec/changes/archive/2026-06-12-nix-package-ica/proposal.md).
 
-## v1.1.0 Dark Mode - 3 april 2025
+### Changed
 
-- Add dark mode templates.
+- refactoring project dir
 
-## v1.0.0 Initial Release
+## [1.1.0] - 2025-04-03
 
-- Create templates and symbols
-- Create make script
+### Added
+
+- Dark mode templates.
+
+## [1.0.0] - Initial Release
+
+### Added
+
+- Templates and symbols.
+- Make script.
+
+[Unreleased]: https://github.com/mipmip/inkscape-cloud-architect/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/mipmip/inkscape-cloud-architect/compare/v1.1.0...v2.0.0
+[1.1.0]: https://github.com/mipmip/inkscape-cloud-architect/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/mipmip/inkscape-cloud-architect/releases/tag/v1.0.0
