@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **release tooling** — `./RUNME.sh release <major|minor|patch>`
+  - Keep a Changelog format with `[Unreleased]`; the command bumps the version,
+    rewrites the changelog, commits, tags, pushes, and creates a GitHub Release.
+    Works with both git and jj.
+  - See [proposal](openspec/changes/archive/2026-06-12-release-management/proposal.md).
+
 ## [2.0.0] - 2026-06-12
 
 ### Added
