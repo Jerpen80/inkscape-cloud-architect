@@ -17,6 +17,11 @@
     type-coerced and validated against the schema before rendering) and
     `ica initconf` (curated starter config). Typer-based, `--version`/`--help`.
   - See [proposal](openspec/changes/archive/2026-06-12-ica-cli/proposal.md).
+- **nix package + setup** — install ica via nix; ica setup builds symbols
+  - `nix run .#ica` / `nix profile install`; `ica setup` obtains the AWS icon
+    ZIP (`--asset-zip` / download / repo fallback) and installs symbols +
+    templates into the Inkscape dir. AWS symbols are never redistributed.
+  - See [proposal](openspec/changes/archive/2026-06-12-nix-package-ica/proposal.md).
 
 ## v1.1.0 Dark Mode - 3 april 2025
 
