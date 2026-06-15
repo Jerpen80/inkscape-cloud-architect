@@ -49,9 +49,28 @@ SYMBOL_FILES = [
 ]
 
 
+def inkscape_dir():
+    """Resolve the Inkscape user config dir, honoring $INKSCAPE_DIR and macOS.
+
+    On Linux this is ``~/.config/inkscape`` (the historical default), so existing
+    installs are unchanged. On macOS, or when $INKSCAPE_DIR is set, it follows
+    that — keeping symbol install (ica setup) and symbol lookup (render) in sync.
+    """
+    import os
+    import platform
+
+    env = os.environ.get("INKSCAPE_DIR")
+    if env:
+        return env
+    if platform.system() == "Darwin":
+        return str(Path.home()) + "/Library/Application Support/org.inkscape.Inkscape/config/inkscape"
+    return str(Path.home()) + "/.config/inkscape"
+
+
 def default_symbol_dir():
-    """The Inkscape symbol location — the historical default."""
-    return str(Path.home()) + "/.config/inkscape/symbols/aws-architect"
+    """The Inkscape symbol location — resolves via inkscape_dir() so it agrees
+    with where ``ica setup`` installs symbols (honors $INKSCAPE_DIR / macOS)."""
+    return inkscape_dir() + "/symbols/aws-architect"
 
 
 def resolve_symbol_dir(config=None, symbol_dir=None):

@@ -19,6 +19,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     exercising every renderer, plus a structural test (`test_render_fixture`,
     in `test_all`) that asserts the rendered SVG's shape. No real account-data.
   - See [proposal](openspec/changes/archive/2026-06-12-synthetic-fixtures/proposal.md).
+- **ica doctor** — check the render environment is healthy + how to fix it
+  - Verifies inkex, symbols, templates, and the installed extension; prints a
+    per-item status with actionable remedies (e.g. `ica setup`) and exits
+    non-zero when a required dependency (inkex, symbols) is missing.
+  - See [proposal](openspec/changes/archive/2026-06-15-ica-doctor/proposal.md).
 
 ### Changed
 
@@ -28,6 +33,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     defaults removed from the renderers. Output is byte-identical (guarded by a
     new byte-exact golden test, `test_config_golden`).
   - See [proposal](openspec/changes/archive/2026-06-15-config-restructure/proposal.md).
+
+### Fixed
+
+- **symbol directory resolution** honors `$INKSCAPE_DIR` and macOS
+  - `engine.default_symbol_dir()` previously hardcoded `~/.config/inkscape`, so on
+    macOS (or with `$INKSCAPE_DIR` set) `ica setup` installed symbols where the
+    renderer could not find them. Now both resolve via one `engine.inkscape_dir()`.
 
 ## [2.0.0] - 2026-06-12
 

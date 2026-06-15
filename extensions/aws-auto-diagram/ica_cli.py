@@ -13,7 +13,6 @@ extension is untouched).
 """
 
 import os
-import platform
 import shutil
 import subprocess
 import sys
@@ -199,13 +198,8 @@ def initconf(
 
 
 def _inkscape_dir():
-    """Resolve the Inkscape user config dir (override via $INKSCAPE_DIR)."""
-    env = os.environ.get("INKSCAPE_DIR")
-    if env:
-        return Path(env)
-    if platform.system() == "Darwin":
-        return Path.home() / "Library/Application Support/org.inkscape.Inkscape/config/inkscape"
-    return Path.home() / ".config/inkscape"
+    """Resolve the Inkscape user config dir (single source: engine.inkscape_dir)."""
+    return Path(engine.inkscape_dir())
 
 
 def _symbol_build_dir():
@@ -344,6 +338,60 @@ def _install_built(target):
     typer.echo(f"installed symbols → {sym_dest}", err=True)
     typer.echo(f"installed templates → {tpl_dest}", err=True)
     typer.echo("setup complete — `ica render` is ready.", err=True)
+
+
+# --------------------------------------------------------------------------- #
+# ica doctor — check the rendering environment is healthy
+# --------------------------------------------------------------------------- #
+
+
+@app.command()
+def doctor():
+    """Check the environment is ready to render, and how to fix it if not."""
+    config = ica_config.load_config(EXTENSION_DIR)
+    ink = _inkscape_dir()
+    ok = True  # tracks required checks
+
+    # 1. inkex importable (required)
+    try:
+        import inkex  # noqa: F401
+        typer.echo("ok    inkex importable")
+    except Exception:  # noqa: BLE001
+        ok = False
+        typer.echo("FAIL  inkex not importable")
+        typer.echo("        → run inside the `nix develop` shell, or install ica via the flake")
+
+    # 2. symbols present (required) — same location render uses
+    sym_dir = Path(engine.resolve_symbol_dir(config, None))
+    missing = [f for f in engine.SYMBOL_FILES if not (sym_dir / f).is_file()]
+    if not missing:
+        typer.echo(f"ok    symbols present ({len(engine.SYMBOL_FILES)} files in {sym_dir})")
+    else:
+        ok = False
+        typer.echo(f"FAIL  symbols missing in {sym_dir}: {', '.join(missing)}")
+        typer.echo("        → run `ica setup` (optionally `ica setup --asset-zip <path>`)")
+
+    # 3. templates present (warning — GUI only)
+    tpl_dir = ink / "templates" / "aws-architect"
+    if tpl_dir.is_dir() and any(tpl_dir.iterdir()):
+        typer.echo(f"ok    templates present ({tpl_dir})")
+    else:
+        typer.echo(f"warn  templates not installed ({tpl_dir})")
+        typer.echo("        → run `ica setup` (needed only for the Inkscape GUI)")
+
+    # 4. extension present (info — GUI dialog only)
+    ext_dir = ink / "extensions" / "aws-auto-diagram"
+    if ext_dir.is_dir():
+        typer.echo(f"ok    Inkscape extension installed ({ext_dir})")
+    else:
+        typer.echo(f"info  Inkscape extension not installed ({ext_dir})")
+        typer.echo("        → install it for the Inkscape dialog (not needed for `ica render`)")
+
+    if ok:
+        typer.echo("\nenvironment OK — `ica render` is ready.")
+    else:
+        typer.echo("\nenvironment NOT ready — fix the FAIL items above.", err=True)
+        raise typer.Exit(1)
 
 
 if __name__ == "__main__":

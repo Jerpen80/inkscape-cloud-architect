@@ -1,10 +1,12 @@
 ---
 # inkscape-cloud-architect-wkj7
 title: '35 ica doctor + setup: inkscape env health & install'
-status: todo
+status: completed
 type: task
+priority: normal
+openspec-link: openspec/changes/archive/2026-06-15-ica-doctor
 created_at: 2026-06-12T12:04:59Z
-updated_at: 2026-06-12T12:04:59Z
+updated_at: 2026-06-15T14:50:00Z
 parent: inkscape-cloud-architect-muex
 blocked_by:
     - inkscape-cloud-architect-fy5b

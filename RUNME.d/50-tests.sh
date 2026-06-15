@@ -122,6 +122,11 @@ test_config_golden(){
   python3 "$RUNME_DIR/extensions/aws-auto-diagram/tests/test_config_golden.py"
 }
 
+make_command "test_ica_doctor" "Test: ica doctor health-check outcomes."
+test_ica_doctor(){
+  python3 "$RUNME_DIR/extensions/aws-auto-diagram/tests/test_ica_doctor.py"
+}
+
 make_command "test_all" "Run all tests."
 test_all(){
   local failed=0
@@ -132,6 +137,7 @@ test_all(){
   test_ica_cli || failed=1
   test_render_fixture || failed=1
   test_config_golden || failed=1
+  test_ica_doctor || failed=1
   if [[ $failed -eq 0 ]]; then
     echo -e "\nAll tests passed."
   else
