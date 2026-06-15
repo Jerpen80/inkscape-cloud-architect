@@ -25,14 +25,14 @@ def get_region_padding(config):
     region_cfg = layout.get("region", {})
     pad = region_cfg.get("padding", {})
     return {
-        "top": pad.get("top", DEFAULT_PADDING_TOP),
-        "right": pad.get("right", DEFAULT_PADDING_RIGHT),
-        "bottom": pad.get("bottom", DEFAULT_PADDING_BOTTOM),
-        "left": pad.get("left", DEFAULT_PADDING_LEFT),
+        "top": pad["top"],
+        "right": pad["right"],
+        "bottom": pad["bottom"],
+        "left": pad["left"],
     }
 
 
 def get_region_gap(config):
     """Get horizontal gap between regions from config."""
     layout = (config or {}).get("layout", {})
-    return layout.get("region", {}).get("gap", 20)
+    return layout.get("region", {})["gap"]

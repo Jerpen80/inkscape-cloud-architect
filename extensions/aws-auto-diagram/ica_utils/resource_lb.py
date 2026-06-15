@@ -33,8 +33,8 @@ def zone_height(lb_count, config=None):
     if lb_count == 0:
         return 0
     cfg = _get_cfg(config)
-    card_h = cfg.get("card_height", DEFAULT_CARD_HEIGHT)
-    card_gap = cfg.get("card_gap", DEFAULT_CARD_GAP)
+    card_h = cfg["card_height"]
+    card_gap = cfg["card_gap"]
     return lb_count * card_h + max(0, lb_count - 1) * card_gap + card_gap  # trailing gap before subnets
 
 
@@ -54,12 +54,12 @@ def render_lb(inkdoc, lb, y, grid, subnet_to_col, layer, config=None):
         Card height used
     """
     cfg = _get_cfg(config)
-    icon_scale = cfg.get("icon_scale", DEFAULT_ICON_SCALE)
-    font_size = cfg.get("font_size", DEFAULT_FONT_SIZE)
-    card_h = cfg.get("card_height", DEFAULT_CARD_HEIGHT)
-    span_color = cfg.get("span_line_color", "#ED7100")
-    span_width = cfg.get("span_line_width", 1.0)
-    span_dash = cfg.get("span_line_dasharray", "4,4")
+    icon_scale = cfg["icon_scale"]
+    font_size = cfg["font_size"]
+    card_h = cfg["card_height"]
+    span_color = cfg["span_line_color"]
+    span_width = cfg["span_line_width"]
+    span_dash = cfg["span_line_dasharray"]
 
     icon_h = ICON_BASE_SIZE * icon_scale
     font_h = get_font_height(font_size)
@@ -149,7 +149,7 @@ def render_lb_zone(inkdoc, load_balancers, zone_y, grid, subnet_to_col, layer, c
         config: Config dict
     """
     cfg = _get_cfg(config)
-    card_gap = cfg.get("card_gap", DEFAULT_CARD_GAP)
+    card_gap = cfg["card_gap"]
 
     cursor_y = zone_y
     for lb in load_balancers:

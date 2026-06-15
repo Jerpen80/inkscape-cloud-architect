@@ -27,9 +27,9 @@ def _get_cfg(config):
 def label_width(asg_name, config=None):
     """Compute the minimum cell width needed to fit an ASG label (icon + name + padding)."""
     cfg = _get_cfg(config)
-    padding = cfg.get("padding", DEFAULT_PADDING)
-    font_size = cfg.get("font_size", DEFAULT_FONT_SIZE)
-    icon_scale = cfg.get("icon_scale", DEFAULT_ICON_SCALE)
+    padding = cfg["padding"]
+    font_size = cfg["font_size"]
+    icon_scale = cfg["icon_scale"]
     icon_w = ICON_BASE_SIZE * icon_scale
     # outer padding + container padding + icon + gap + text + container padding + outer padding
     text_w = estimate_text_width(asg_name, font_size)
@@ -39,8 +39,8 @@ def label_width(asg_name, config=None):
 def container_overhead(config=None):
     """Extra height added per ASG container (top_margin + label + padding)."""
     cfg = _get_cfg(config)
-    label_h = cfg.get("label_height", DEFAULT_LABEL_HEIGHT)
-    top_margin = cfg.get("top_margin", DEFAULT_TOP_MARGIN)
+    label_h = cfg["label_height"]
+    top_margin = cfg["top_margin"]
     return top_margin + label_h
 
 
@@ -87,17 +87,17 @@ def render_asg_spanning(inkdoc, auto_scaling_groups, instance_to_asg, asg_lookup
     subnet column, positioned at the y-offset of its instances within the row.
     """
     cfg = _get_cfg(config)
-    stroke_color = cfg.get("stroke_color", DEFAULT_STROKE_COLOR)
-    stroke_width = cfg.get("stroke_width", DEFAULT_STROKE_WIDTH)
-    stroke_dash = cfg.get("stroke_dasharray", DEFAULT_STROKE_DASHARRAY)
-    label_h = cfg.get("label_height", DEFAULT_LABEL_HEIGHT)
-    padding = cfg.get("padding", DEFAULT_PADDING)
-    top_margin = cfg.get("top_margin", DEFAULT_TOP_MARGIN)
-    font_size = cfg.get("font_size", DEFAULT_FONT_SIZE)
-    icon_scale = cfg.get("icon_scale", DEFAULT_ICON_SCALE)
+    stroke_color = cfg["stroke_color"]
+    stroke_width = cfg["stroke_width"]
+    stroke_dash = cfg["stroke_dasharray"]
+    label_h = cfg["label_height"]
+    padding = cfg["padding"]
+    top_margin = cfg["top_margin"]
+    font_size = cfg["font_size"]
+    icon_scale = cfg["icon_scale"]
 
-    ec2_card_top = (config or {}).get("layout", {}).get("ec2", {}).get("card_top", 10)
-    ec2_card_gap = (config or {}).get("layout", {}).get("ec2", {}).get("card_gap", 8)
+    ec2_card_top = (config or {}).get("layout", {}).get("ec2", {})["card_top"]
+    ec2_card_gap = (config or {}).get("layout", {}).get("ec2", {})["card_gap"]
     ch = resource_ec2.card_height(config)
 
     # Build per-ASG: which (row, col) cells contain its instances, and the start_idx per cell

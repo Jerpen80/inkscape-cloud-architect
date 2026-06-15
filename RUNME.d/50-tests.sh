@@ -117,6 +117,11 @@ test_render_fixture(){
   python3 "$RUNME_DIR/extensions/aws-auto-diagram/tests/test_render_fixture.py"
 }
 
+make_command "test_config_golden" "Test: byte-exact render of the fixture vs committed goldens."
+test_config_golden(){
+  python3 "$RUNME_DIR/extensions/aws-auto-diagram/tests/test_config_golden.py"
+}
+
 make_command "test_all" "Run all tests."
 test_all(){
   local failed=0
@@ -126,6 +131,7 @@ test_all(){
   test_config_schema || failed=1
   test_ica_cli || failed=1
   test_render_fixture || failed=1
+  test_config_golden || failed=1
   if [[ $failed -eq 0 ]]; then
     echo -e "\nAll tests passed."
   else

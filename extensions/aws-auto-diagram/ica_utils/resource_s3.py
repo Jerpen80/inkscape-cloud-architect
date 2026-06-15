@@ -20,16 +20,16 @@ register_legend("resource", "S3", "AWS-Resource-storage-light.svg:res-amazon-sim
 def _card_height(config=None):
     """Height of a single S3 bucket card (icon only, name is to the right)."""
     s3_cfg = (config or {}).get("layout", {}).get("s3", {})
-    icon_scale = s3_cfg.get("icon_scale", DEFAULT_ICON_SCALE)
+    icon_scale = s3_cfg["icon_scale"]
     return ICON_BASE_SIZE * icon_scale
 
 
 def _card_width(name, config=None):
     """Width of a single S3 bucket card (icon + gap + name text)."""
     s3_cfg = (config or {}).get("layout", {}).get("s3", {})
-    icon_scale = s3_cfg.get("icon_scale", DEFAULT_ICON_SCALE)
-    font_size = s3_cfg.get("font_size", DEFAULT_FONT_SIZE)
-    card_padding = s3_cfg.get("card_padding", DEFAULT_CARD_PADDING)
+    icon_scale = s3_cfg["icon_scale"]
+    font_size = s3_cfg["font_size"]
+    card_padding = s3_cfg["card_padding"]
 
     icon_w = ICON_BASE_SIZE * icon_scale
     text_w = estimate_text_width(name, font_size)
@@ -45,10 +45,10 @@ def render_buckets(inkdoc, buckets, x, y, config=None):
         return (0, 0)
 
     s3_cfg = (config or {}).get("layout", {}).get("s3", {})
-    icon_scale = s3_cfg.get("icon_scale", DEFAULT_ICON_SCALE)
-    font_size = s3_cfg.get("font_size", DEFAULT_FONT_SIZE)
-    card_gap = s3_cfg.get("card_gap", DEFAULT_CARD_GAP)
-    card_padding = s3_cfg.get("card_padding", DEFAULT_CARD_PADDING)
+    icon_scale = s3_cfg["icon_scale"]
+    font_size = s3_cfg["font_size"]
+    card_gap = s3_cfg["card_gap"]
+    card_padding = s3_cfg["card_padding"]
 
     s3_layer = get_or_create_layer(inkdoc, "S3")
 

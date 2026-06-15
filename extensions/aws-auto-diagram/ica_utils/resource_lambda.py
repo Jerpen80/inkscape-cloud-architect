@@ -27,8 +27,8 @@ def zone_height(lambda_count, config=None):
     if lambda_count == 0:
         return 0
     cfg = _get_cfg(config)
-    card_h = cfg.get("card_height", DEFAULT_CARD_HEIGHT)
-    card_gap = cfg.get("card_gap", DEFAULT_CARD_GAP)
+    card_h = cfg["card_height"]
+    card_gap = cfg["card_gap"]
     return lambda_count * card_h + max(0, lambda_count - 1) * card_gap + card_gap
 
 
@@ -39,12 +39,12 @@ def render_lambda_spanning(inkdoc, fn, y, grid, subnet_to_col, layer, config=Non
         Card height used
     """
     cfg = _get_cfg(config)
-    icon_scale = cfg.get("icon_scale", DEFAULT_ICON_SCALE)
-    font_size = cfg.get("font_size", DEFAULT_FONT_SIZE)
-    card_h = cfg.get("card_height", DEFAULT_CARD_HEIGHT)
-    span_color = cfg.get("span_line_color", "#FF9900")
-    span_width = cfg.get("span_line_width", 1.0)
-    span_dash = cfg.get("span_line_dasharray", "4,4")
+    icon_scale = cfg["icon_scale"]
+    font_size = cfg["font_size"]
+    card_h = cfg["card_height"]
+    span_color = cfg["span_line_color"]
+    span_width = cfg["span_line_width"]
+    span_dash = cfg["span_line_dasharray"]
 
     font_h = get_font_height(font_size)
 
@@ -121,7 +121,7 @@ def render_lambda_spanning(inkdoc, fn, y, grid, subnet_to_col, layer, config=Non
 def render_lambda_zone(inkdoc, vpc_lambdas, zone_y, grid, subnet_to_col, layer, config=None):
     """Render all VPC Lambdas in the pre-grid zone."""
     cfg = _get_cfg(config)
-    card_gap = cfg.get("card_gap", DEFAULT_CARD_GAP)
+    card_gap = cfg["card_gap"]
 
     cursor_y = zone_y
     for fn in vpc_lambdas:
@@ -141,10 +141,10 @@ def render_non_vpc_lambdas(inkdoc, lambdas, x, y, config=None):
         return (0, 0)
 
     cfg = _get_cfg(config)
-    icon_scale = cfg.get("icon_scale", DEFAULT_ICON_SCALE)
-    font_size = cfg.get("font_size", DEFAULT_FONT_SIZE)
-    card_gap = cfg.get("card_gap", DEFAULT_CARD_GAP)
-    card_padding = cfg.get("card_padding", DEFAULT_CARD_PADDING)
+    icon_scale = cfg["icon_scale"]
+    font_size = cfg["font_size"]
+    card_gap = cfg["card_gap"]
+    card_padding = cfg["card_padding"]
 
     lambda_layer = get_or_create_layer(inkdoc, "Lambda")
 

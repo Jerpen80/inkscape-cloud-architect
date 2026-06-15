@@ -26,8 +26,8 @@ def zone_height(cluster_count, config=None):
     if cluster_count == 0:
         return 0
     cfg = _get_cfg(config)
-    card_h = cfg.get("card_height", DEFAULT_CARD_HEIGHT)
-    card_gap = cfg.get("card_gap", DEFAULT_CARD_GAP)
+    card_h = cfg["card_height"]
+    card_gap = cfg["card_gap"]
     return cluster_count * card_h + max(0, cluster_count - 1) * card_gap + card_gap
 
 
@@ -38,12 +38,12 @@ def render_eks(inkdoc, cluster, y, grid, subnet_to_col, layer, config=None):
         Card height used
     """
     cfg = _get_cfg(config)
-    icon_scale = cfg.get("icon_scale", DEFAULT_ICON_SCALE)
-    font_size = cfg.get("font_size", DEFAULT_FONT_SIZE)
-    card_h = cfg.get("card_height", DEFAULT_CARD_HEIGHT)
-    span_color = cfg.get("span_line_color", "#FF9900")
-    span_width = cfg.get("span_line_width", 1.0)
-    span_dash = cfg.get("span_line_dasharray", "4,4")
+    icon_scale = cfg["icon_scale"]
+    font_size = cfg["font_size"]
+    card_h = cfg["card_height"]
+    span_color = cfg["span_line_color"]
+    span_width = cfg["span_line_width"]
+    span_dash = cfg["span_line_dasharray"]
 
     font_h = get_font_height(font_size)
 
@@ -123,7 +123,7 @@ def render_eks(inkdoc, cluster, y, grid, subnet_to_col, layer, config=None):
 def render_eks_zone(inkdoc, eks_clusters, zone_y, grid, subnet_to_col, layer, config=None):
     """Render all EKS clusters in the pre-grid zone."""
     cfg = _get_cfg(config)
-    card_gap = cfg.get("card_gap", DEFAULT_CARD_GAP)
+    card_gap = cfg["card_gap"]
 
     cursor_y = zone_y
     for cluster in eks_clusters:

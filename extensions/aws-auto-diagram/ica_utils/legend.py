@@ -42,14 +42,14 @@ def _has_layer_content(inkdoc, layer_name):
 def render_legend(inkdoc, config=None):
     """Render the legend below all content on the Legend layer."""
     cfg = _get_cfg(config)
-    icon_scale = cfg.get("icon_scale", 0.5)
-    font_size = cfg.get("font_size", 11)
-    item_gap = cfg.get("item_gap", 15)
-    row_gap = cfg.get("row_gap", 10)
-    section_gap = cfg.get("section_gap", 15)
-    top_spacing = cfg.get("top_spacing", 30)
-    swatch_w = cfg.get("swatch_width", 25)
-    swatch_h = cfg.get("swatch_height", 12)
+    icon_scale = cfg["icon_scale"]
+    font_size = cfg["font_size"]
+    item_gap = cfg["item_gap"]
+    row_gap = cfg["row_gap"]
+    section_gap = cfg["section_gap"]
+    top_spacing = cfg["top_spacing"]
+    swatch_w = cfg["swatch_width"]
+    swatch_h = cfg["swatch_height"]
 
     text_color = get_text_color(config)
     icon_w = ICON_BASE_SIZE * icon_scale

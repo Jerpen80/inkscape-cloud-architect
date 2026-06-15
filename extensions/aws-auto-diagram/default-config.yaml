@@ -1,28 +1,26 @@
 document:
   margin: 20
-
 theme:
   light:
-    background: "none"
-    text_color: "#000000"
+    background: none
+    text_color: '#000000'
     text_dimmed_opacity: 0.6
-    border_account: "#000000"
-    border_edge: "#7B61FF"
-    border_vpc: "#8c4fff"
-    border_subnet_public: "#7aa116"
-    border_subnet_private: "#00a4a6"
-    border_region: "#00a4a6"
+    border_account: '#000000'
+    border_edge: '#7B61FF'
+    border_vpc: '#8c4fff'
+    border_subnet_public: '#7aa116'
+    border_subnet_private: '#00a4a6'
+    border_region: '#00a4a6'
   dark:
-    background: "#232F3E"
-    text_color: "#e0e0e0"
+    background: '#232F3E'
+    text_color: '#e0e0e0'
     text_dimmed_opacity: 0.5
-    border_account: "#e0e0e0"
-    border_edge: "#9B81FF"
-    border_vpc: "#8c4fff"
-    border_subnet_public: "#7aa116"
-    border_subnet_private: "#00a4a6"
-    border_region: "#00a4a6"
-
+    border_account: '#e0e0e0'
+    border_edge: '#9B81FF'
+    border_vpc: '#8c4fff'
+    border_subnet_public: '#7aa116'
+    border_subnet_private: '#00a4a6'
+    border_region: '#00a4a6'
 layout:
   mode: spaced
   spaced:
@@ -59,31 +57,31 @@ layout:
       font_size: 17
       card_height: 50
       card_gap: 15
-      span_line_color: "#FF9900"
+      span_line_color: '#FF9900'
       span_line_width: 1.0
-      span_line_dasharray: "4,4"
+      span_line_dasharray: 4,4
     lambda_function:
       icon_scale: 1.0
       font_size: 17
       card_height: 50
       card_gap: 15
       card_padding: 4
-      span_line_color: "#FF9900"
+      span_line_color: '#FF9900'
       span_line_width: 1.0
-      span_line_dasharray: "4,4"
+      span_line_dasharray: 4,4
     load_balancer:
       icon_scale: 1.0
       font_size: 17
       card_height: 50
       card_gap: 15
-      span_line_color: "#ED7100"
+      span_line_color: '#ED7100'
       span_line_width: 1.0
-      span_line_dasharray: "4,4"
+      span_line_dasharray: 4,4
     asg:
       icon_scale: 1.0
-      stroke_color: "#ED7100"
+      stroke_color: '#ED7100'
       stroke_width: 0.5
-      stroke_dasharray: "4,4"
+      stroke_dasharray: 4,4
       label_height: 50
       padding: 10
       top_margin: 15
@@ -134,14 +132,14 @@ layout:
       gap: 40
     availability_zone:
       enabled: true
-      label_prefix: ""
+      label_prefix: ''
       padding:
         top: 70
         bottom: 50
         sides: 15
-      stroke_color: "#00a4a6"
+      stroke_color: '#00a4a6'
       stroke_width: 0.5
-      stroke_dasharray: "8,8"
+      stroke_dasharray: 8,8
     legend:
       icon_scale: 1.0
       font_size: 15
@@ -185,31 +183,18 @@ layout:
       font_size: 13
       card_height: 30
       card_gap: 8
-      span_line_color: "#FF9900"
-      span_line_width: 1.0
-      span_line_dasharray: "4,4"
     lambda_function:
       icon_scale: 0.5
       font_size: 13
       card_height: 30
       card_gap: 8
-      card_padding: 4
-      span_line_color: "#FF9900"
-      span_line_width: 1.0
-      span_line_dasharray: "4,4"
     load_balancer:
       icon_scale: 0.5
       font_size: 13
       card_height: 30
       card_gap: 8
-      span_line_color: "#ED7100"
-      span_line_width: 1.0
-      span_line_dasharray: "4,4"
     asg:
       icon_scale: 0.35
-      stroke_color: "#ED7100"
-      stroke_width: 0.5
-      stroke_dasharray: "4,4"
       label_height: 28
       padding: 6
       top_margin: 10
@@ -259,15 +244,10 @@ layout:
         left: 30
       gap: 20
     availability_zone:
-      enabled: true
-      label_prefix: ""
       padding:
         top: 50
         bottom: 40
         sides: 8
-      stroke_color: "#00a4a6"
-      stroke_width: 0.5
-      stroke_dasharray: "8,8"
     legend:
       icon_scale: 0.5
       font_size: 11

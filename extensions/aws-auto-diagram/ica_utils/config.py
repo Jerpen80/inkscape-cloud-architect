@@ -37,7 +37,12 @@ def load_config(extension_dir):
 
 
 def resolve_layout_mode(config, mode_override=None):
-    """Resolve layout mode and merge selected preset into config["layout"].
+    """Resolve layout mode into config["layout"] top-level keys.
+
+    The ``spaced`` preset holds the canonical layout values. ``dense`` is a *diff*
+    overlay listing only the keys that differ from canonical; for ``mode=dense``
+    the diff is deep-merged on top of the canonical base. Style keys that do not
+    vary by density live only in ``spaced`` and therefore apply in both modes.
 
     Args:
         config: Full config dict (modified in place)
@@ -46,10 +51,14 @@ def resolve_layout_mode(config, mode_override=None):
     layout = config.get("layout", {})
     mode = mode_override or layout.get("mode", "spaced")
 
-    preset = layout.get(mode, layout.get("spaced", {}))
+    canonical = layout.get("spaced", {})
+    if mode == "dense":
+        resolved = _deep_merge(canonical, layout.get("dense", {}))
+    else:
+        resolved = canonical
 
-    # Merge preset values into layout top-level
-    for key, value in preset.items():
+    # Merge resolved values into layout top-level
+    for key, value in resolved.items():
         layout[key] = value
 
     # Clean up mode/preset keys

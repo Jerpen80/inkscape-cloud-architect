@@ -151,22 +151,22 @@ def render_vpc_with_subnets(inkdoc, vpc, vpc_subnets, stack, config=None, instan
     subnet_cfg = layout.get("subnet", {})
 
     az_cfg = layout.get("availability_zone", {})
-    az_enabled = az_cfg.get("enabled", True)
-    az_pad_sides = az_cfg.get("padding", {}).get("sides", 5)
-    az_pad_top = az_cfg.get("padding", {}).get("top", 25)
+    az_enabled = az_cfg["enabled"]
+    az_pad_sides = az_cfg.get("padding", {})["sides"]
+    az_pad_top = az_cfg.get("padding", {})["top"]
 
-    pad_top = vpc_pad.get("top", DEFAULT_VPC_PADDING_TOP)
-    pad_right = vpc_pad.get("right", DEFAULT_VPC_PADDING_SIDES)
-    pad_bottom = vpc_pad.get("bottom", DEFAULT_VPC_PADDING_BOTTOM)
-    pad_left = vpc_pad.get("left", DEFAULT_VPC_PADDING_SIDES)
-    base_col_gap = subnet_cfg.get("col_gap", DEFAULT_COL_GAP)
-    row_gap = subnet_cfg.get("row_gap", DEFAULT_ROW_GAP)
-    subnet_min_width = subnet_cfg.get("min_width", DEFAULT_SUBNET_MIN_WIDTH)
-    subnet_min_height = subnet_cfg.get("height", DEFAULT_SUBNET_HEIGHT)
+    pad_top = vpc_pad["top"]
+    pad_right = vpc_pad["right"]
+    pad_bottom = vpc_pad["bottom"]
+    pad_left = vpc_pad["left"]
+    base_col_gap = subnet_cfg["col_gap"]
+    row_gap = subnet_cfg["row_gap"]
+    subnet_min_width = subnet_cfg["min_width"]
+    subnet_min_height = subnet_cfg["height"]
 
     # Widen col_gap, pad_top and pad_bottom to accommodate AZ rects when enabled
     if az_enabled:
-        az_pad_bottom = az_cfg.get("padding", {}).get("bottom", 8)
+        az_pad_bottom = az_cfg.get("padding", {})["bottom"]
         col_gap = az_pad_sides * 2 + base_col_gap
         pad_top = pad_top + az_pad_top
         pad_bottom = az_pad_bottom + pad_bottom
@@ -255,10 +255,10 @@ def render_vpc_with_subnets(inkdoc, vpc, vpc_subnets, stack, config=None, instan
     # Compute per-row heights based on max resource count in each row
     # ASG bands are consistent across all columns in a row, so compute
     # the cross-column ASG band total per row first.
-    ec2_card_gap_cfg = layout.get("ec2", {}).get("card_gap", 8)
+    ec2_card_gap_cfg = layout.get("ec2", {})["card_gap"]
     ch_cfg = resource_ec2.card_height(config)
     asg_oh_cfg = resource_asg.container_overhead(config)
-    asg_pad_cfg = resource_asg._get_cfg(config).get("padding", 6)
+    asg_pad_cfg = resource_asg._get_cfg(config)["padding"]
 
     row_heights = []
     for row in range(num_rows):
@@ -332,8 +332,8 @@ def render_vpc_with_subnets(inkdoc, vpc, vpc_subnets, stack, config=None, instan
                         widest = max(widest, resource_asg.label_width(asg_name, config))
                 # Also consider EC2 instance card widths
                 ec2_layout = layout.get("ec2", {})
-                ec2_font = ec2_layout.get("font_size", 13)
-                ec2_icon_w = 40 * ec2_layout.get("icon_scale", 0.5)
+                ec2_font = ec2_layout["font_size"]
+                ec2_icon_w = 40 * ec2_layout["icon_scale"]
                 for inst in instance_map.get(sid, []):
                     name_w = estimate_text_width(inst.get("name", ""), ec2_font)
                     type_w = estimate_text_width(inst.get("instance_type", ""), ec2_font)
@@ -341,8 +341,8 @@ def render_vpc_with_subnets(inkdoc, vpc, vpc_subnets, stack, config=None, instan
                     widest = max(widest, card_w)
                 # Also consider DB instance card widths
                 db_layout = layout.get("database", {})
-                db_font = db_layout.get("font_size", 13)
-                db_icon_w = 40 * db_layout.get("icon_scale", 0.5)
+                db_font = db_layout["font_size"]
+                db_icon_w = 40 * db_layout["icon_scale"]
                 for db in db_map.get(sid, []):
                     db_name_w = estimate_text_width(db.get("name", ""), db_font)
                     db_card_w = db_icon_w + db_name_w + 10
@@ -430,8 +430,8 @@ def render_vpc_with_subnets(inkdoc, vpc, vpc_subnets, stack, config=None, instan
         subnet_instances = instance_map.get(sid, [])
         ec2_offset = subnet_label_height
         if subnet_instances:
-            ec2_card_top = layout.get("ec2", {}).get("card_top", 10)
-            ec2_card_gap = layout.get("ec2", {}).get("card_gap", 8)
+            ec2_card_top = layout.get("ec2", {})["card_top"]
+            ec2_card_gap = layout.get("ec2", {})["card_gap"]
             ch = resource_ec2.card_height(config)
             asg_oh = resource_asg.container_overhead(config)
 
@@ -480,7 +480,7 @@ def render_vpc_with_subnets(inkdoc, vpc, vpc_subnets, stack, config=None, instan
 
                 # Advance band cursor by overhead + max cards for this ASG
                 asg_cards_h = max_asg_count * ch + max(0, max_asg_count - 1) * ec2_card_gap
-                band_cursor += asg_oh + asg_cards_h + resource_asg._get_cfg(config).get("padding", 6)
+                band_cursor += asg_oh + asg_cards_h + resource_asg._get_cfg(config)["padding"]
 
             # ec2_offset for DB placement: use the band cursor position (accounts for
             # cross-column ASG bands) so DB cards start below all ASG bands in this row

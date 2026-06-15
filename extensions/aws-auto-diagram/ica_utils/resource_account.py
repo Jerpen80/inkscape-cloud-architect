@@ -22,10 +22,10 @@ def render_account_rect(inkdoc, account_name, config=None):
     acct_cfg = layout.get("account", {})
     acct_pad = acct_cfg.get("padding", {})
 
-    pad_top = acct_pad.get("top", DEFAULT_PADDING_TOP)
-    pad_right = acct_pad.get("right", DEFAULT_PADDING_RIGHT)
-    pad_bottom = acct_pad.get("bottom", DEFAULT_PADDING_BOTTOM)
-    pad_left = acct_pad.get("left", DEFAULT_PADDING_LEFT)
+    pad_top = acct_pad["top"]
+    pad_right = acct_pad["right"]
+    pad_bottom = acct_pad["bottom"]
+    pad_left = acct_pad["left"]
 
     # Compute bounding box of all rendered content
     bbox = None

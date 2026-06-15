@@ -11,17 +11,17 @@ def render_az_columns(inkdoc, vpc_x, vpc_y, grid, azs, num_rows, config):
     layout = config.get("layout", {})
     az_cfg = layout.get("availability_zone", {})
 
-    if not az_cfg.get("enabled", True):
+    if not az_cfg["enabled"]:
         return
 
     az_pad = az_cfg.get("padding", {})
-    pad_top = az_pad.get("top", 30)
-    pad_bottom = az_pad.get("bottom", 8)
-    pad_sides = az_pad.get("sides", 8)
-    stroke_color = az_cfg.get("stroke_color", "#00a4a6")
-    stroke_width = az_cfg.get("stroke_width", 0.5)
-    stroke_dasharray = az_cfg.get("stroke_dasharray", "2,2")
-    label_prefix = az_cfg.get("label_prefix", "")
+    pad_top = az_pad["top"]
+    pad_bottom = az_pad["bottom"]
+    pad_sides = az_pad["sides"]
+    stroke_color = az_cfg["stroke_color"]
+    stroke_width = az_cfg["stroke_width"]
+    stroke_dasharray = az_cfg["stroke_dasharray"]
+    label_prefix = az_cfg["label_prefix"]
 
     row_gap = grid.row_gap
 

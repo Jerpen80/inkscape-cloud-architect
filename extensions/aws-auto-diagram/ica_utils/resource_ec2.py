@@ -19,8 +19,8 @@ register_legend("resource", "EC2", "AWS-Resource-compute-light.svg:res-amazon-ec
 def card_height(config=None):
     """Height of a single EC2 instance card (icon + name + type)."""
     ec2_cfg = (config or {}).get("layout", {}).get("ec2", {})
-    icon_scale = ec2_cfg.get("icon_scale", DEFAULT_ICON_SCALE)
-    font_size = ec2_cfg.get("font_size", DEFAULT_FONT_SIZE)
+    icon_scale = ec2_cfg["icon_scale"]
+    font_size = ec2_cfg["font_size"]
 
     icon_h = ICON_BASE_SIZE * icon_scale
     font_h = get_font_height(font_size)
@@ -32,8 +32,8 @@ def cards_height(instance_count, config=None):
     if instance_count == 0:
         return 0
     ec2_cfg = (config or {}).get("layout", {}).get("ec2", {})
-    card_gap = ec2_cfg.get("card_gap", DEFAULT_CARD_GAP)
-    card_top = ec2_cfg.get("card_top", DEFAULT_CARD_TOP)
+    card_gap = ec2_cfg["card_gap"]
+    card_top = ec2_cfg["card_top"]
     ch = card_height(config)
     return card_top + instance_count * ch + max(0, instance_count - 1) * card_gap
 
@@ -41,8 +41,8 @@ def cards_height(instance_count, config=None):
 def render_instance(inkdoc, instance, x, y, cell_width, layer, config=None):
     """Render a single EC2 instance card at (x, y), centered within cell_width."""
     ec2_cfg = (config or {}).get("layout", {}).get("ec2", {})
-    icon_scale = ec2_cfg.get("icon_scale", DEFAULT_ICON_SCALE)
-    font_size = ec2_cfg.get("font_size", DEFAULT_FONT_SIZE)
+    icon_scale = ec2_cfg["icon_scale"]
+    font_size = ec2_cfg["font_size"]
 
     icon_h = ICON_BASE_SIZE * icon_scale
     icon_w = ICON_BASE_SIZE * icon_scale
@@ -97,8 +97,8 @@ def render_instance(inkdoc, instance, x, y, cell_width, layer, config=None):
 def render_instances_in_subnet(inkdoc, instances, sx, sy, cell_width, subnet_label_height, layer, config=None):
     """Render all instances vertically stacked inside a subnet starting below the label."""
     ec2_cfg = (config or {}).get("layout", {}).get("ec2", {})
-    card_gap = ec2_cfg.get("card_gap", DEFAULT_CARD_GAP)
-    card_top = ec2_cfg.get("card_top", DEFAULT_CARD_TOP)
+    card_gap = ec2_cfg["card_gap"]
+    card_top = ec2_cfg["card_top"]
 
     cursor_y = sy + subnet_label_height + card_top
     for instance in instances:

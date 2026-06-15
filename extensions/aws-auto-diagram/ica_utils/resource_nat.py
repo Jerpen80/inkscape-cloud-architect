@@ -23,8 +23,8 @@ def _get_cfg(config):
 def card_height(config=None):
     """Height of a single NAT gateway card (icon + name)."""
     cfg = _get_cfg(config)
-    icon_scale = cfg.get("icon_scale", DEFAULT_ICON_SCALE)
-    font_size = cfg.get("font_size", DEFAULT_FONT_SIZE)
+    icon_scale = cfg["icon_scale"]
+    font_size = cfg["font_size"]
     icon_h = ICON_BASE_SIZE * icon_scale
     font_h = get_font_height(font_size)
     return icon_h + font_h + 4
@@ -35,8 +35,8 @@ def cards_height(count, config=None):
     if count == 0:
         return 0
     cfg = _get_cfg(config)
-    card_gap = cfg.get("card_gap", DEFAULT_CARD_GAP)
-    card_top = cfg.get("card_top", DEFAULT_CARD_TOP)
+    card_gap = cfg["card_gap"]
+    card_top = cfg["card_top"]
     ch = card_height(config)
     return card_top + count * ch + max(0, count - 1) * card_gap
 
@@ -44,8 +44,8 @@ def cards_height(count, config=None):
 def render_instance(inkdoc, nat_gw, x, y, cell_width, layer, config=None):
     """Render a single NAT gateway card at (x, y), centered within cell_width."""
     cfg = _get_cfg(config)
-    icon_scale = cfg.get("icon_scale", DEFAULT_ICON_SCALE)
-    font_size = cfg.get("font_size", DEFAULT_FONT_SIZE)
+    icon_scale = cfg["icon_scale"]
+    font_size = cfg["font_size"]
 
     icon_h = ICON_BASE_SIZE * icon_scale
     icon_w = ICON_BASE_SIZE * icon_scale
@@ -82,7 +82,7 @@ def render_instance(inkdoc, nat_gw, x, y, cell_width, layer, config=None):
 def render_in_subnet(inkdoc, nat_gateways, sx, sy, cell_width, offset_y, layer, config=None):
     """Render all NAT gateways stacked inside a subnet starting at offset_y below subnet top."""
     cfg = _get_cfg(config)
-    card_gap = cfg.get("card_gap", DEFAULT_CARD_GAP)
+    card_gap = cfg["card_gap"]
 
     cursor_y = sy + offset_y
     for nat_gw in nat_gateways:

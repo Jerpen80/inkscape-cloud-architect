@@ -25,9 +25,9 @@ def _get_cfg(config):
 
 def _card_width(label, config=None):
     cfg = _get_cfg(config)
-    icon_scale = cfg.get("icon_scale", DEFAULT_ICON_SCALE)
-    font_size = cfg.get("font_size", DEFAULT_FONT_SIZE)
-    card_padding = cfg.get("card_padding", DEFAULT_CARD_PADDING)
+    icon_scale = cfg["icon_scale"]
+    font_size = cfg["font_size"]
+    card_padding = cfg["card_padding"]
     icon_w = ICON_BASE_SIZE * icon_scale
     text_w = estimate_text_width(label, font_size)
     return icon_w + card_padding + text_w
@@ -42,10 +42,10 @@ def render_public_zones(inkdoc, zones, x, y, config=None):
         return (0, 0)
 
     cfg = _get_cfg(config)
-    icon_scale = cfg.get("icon_scale", DEFAULT_ICON_SCALE)
-    font_size = cfg.get("font_size", DEFAULT_FONT_SIZE)
-    card_gap = cfg.get("card_gap", DEFAULT_CARD_GAP)
-    card_padding = cfg.get("card_padding", DEFAULT_CARD_PADDING)
+    icon_scale = cfg["icon_scale"]
+    font_size = cfg["font_size"]
+    card_gap = cfg["card_gap"]
+    card_padding = cfg["card_padding"]
 
     layer = get_or_create_layer(inkdoc, "Edge")
 
@@ -97,8 +97,8 @@ def private_zone_height(zone_count, config=None):
     if zone_count == 0:
         return 0
     cfg = _get_cfg(config)
-    card_h = cfg.get("card_height", DEFAULT_CARD_HEIGHT)
-    card_gap = cfg.get("card_gap", DEFAULT_CARD_GAP)
+    card_h = cfg["card_height"]
+    card_gap = cfg["card_gap"]
     return zone_count * card_h + max(0, zone_count - 1) * card_gap + card_gap
 
 
@@ -108,9 +108,9 @@ def render_private_zone(inkdoc, zone, y, grid, layer, config=None):
     Returns card height used.
     """
     cfg = _get_cfg(config)
-    icon_scale = cfg.get("icon_scale", DEFAULT_ICON_SCALE)
-    font_size = cfg.get("font_size", DEFAULT_FONT_SIZE)
-    card_h = cfg.get("card_height", DEFAULT_CARD_HEIGHT)
+    icon_scale = cfg["icon_scale"]
+    font_size = cfg["font_size"]
+    card_h = cfg["card_height"]
 
     font_h = get_font_height(font_size)
 
@@ -163,7 +163,7 @@ def render_private_zone(inkdoc, zone, y, grid, layer, config=None):
 def render_private_zones(inkdoc, zones, zone_y, grid, layer, config=None):
     """Render all private R53 zones in the VPC pre-grid zone."""
     cfg = _get_cfg(config)
-    card_gap = cfg.get("card_gap", DEFAULT_CARD_GAP)
+    card_gap = cfg["card_gap"]
 
     cursor_y = zone_y
     for zone in zones:

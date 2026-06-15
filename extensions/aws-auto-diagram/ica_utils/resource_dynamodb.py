@@ -24,16 +24,16 @@ def _get_cfg(config):
 def _card_height(config=None):
     """Height of a single DynamoDB table card."""
     cfg = _get_cfg(config)
-    icon_scale = cfg.get("icon_scale", DEFAULT_ICON_SCALE)
+    icon_scale = cfg["icon_scale"]
     return ICON_BASE_SIZE * icon_scale
 
 
 def _card_width(name, config=None):
     """Width of a single DynamoDB table card (icon + gap + name text)."""
     cfg = _get_cfg(config)
-    icon_scale = cfg.get("icon_scale", DEFAULT_ICON_SCALE)
-    font_size = cfg.get("font_size", DEFAULT_FONT_SIZE)
-    card_padding = cfg.get("card_padding", DEFAULT_CARD_PADDING)
+    icon_scale = cfg["icon_scale"]
+    font_size = cfg["font_size"]
+    card_padding = cfg["card_padding"]
 
     icon_w = ICON_BASE_SIZE * icon_scale
     text_w = estimate_text_width(name, font_size)
@@ -49,10 +49,10 @@ def render_tables(inkdoc, tables, x, y, config=None):
         return (0, 0)
 
     cfg = _get_cfg(config)
-    icon_scale = cfg.get("icon_scale", DEFAULT_ICON_SCALE)
-    font_size = cfg.get("font_size", DEFAULT_FONT_SIZE)
-    card_gap = cfg.get("card_gap", DEFAULT_CARD_GAP)
-    card_padding = cfg.get("card_padding", DEFAULT_CARD_PADDING)
+    icon_scale = cfg["icon_scale"]
+    font_size = cfg["font_size"]
+    card_gap = cfg["card_gap"]
+    card_padding = cfg["card_padding"]
 
     ddb_layer = get_or_create_layer(inkdoc, "DynamoDB")
 

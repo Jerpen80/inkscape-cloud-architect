@@ -20,6 +20,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     in `test_all`) that asserts the rendered SVG's shape. No real account-data.
   - See [proposal](openspec/changes/archive/2026-06-12-synthetic-fixtures/proposal.md).
 
+### Changed
+
+- **config single-source-of-truth** — collapse 3 default sources into one
+  - `default-config.yaml` now stores `spaced` as canonical and `dense` as a diff
+    of only the keys that differ; 161 redundant inline `.get(k, default)` shadow
+    defaults removed from the renderers. Output is byte-identical (guarded by a
+    new byte-exact golden test, `test_config_golden`).
+  - See [proposal](openspec/changes/archive/2026-06-15-config-restructure/proposal.md).
+
 ## [2.0.0] - 2026-06-12
 
 ### Added

@@ -35,11 +35,11 @@ def render_edge_zone(inkdoc, route53_public_zones, cloudfront_distributions, x, 
         return (0, 0)
 
     cfg = _get_cfg(config)
-    pad_top = cfg.get("padding", {}).get("top", DEFAULT_PADDING_TOP)
-    pad_right = cfg.get("padding", {}).get("right", DEFAULT_PADDING_RIGHT)
-    pad_bottom = cfg.get("padding", {}).get("bottom", DEFAULT_PADDING_BOTTOM)
-    pad_left = cfg.get("padding", {}).get("left", DEFAULT_PADDING_LEFT)
-    column_gap = cfg.get("column_gap", DEFAULT_COLUMN_GAP)
+    pad_top = cfg.get("padding", {})["top"]
+    pad_right = cfg.get("padding", {})["right"]
+    pad_bottom = cfg.get("padding", {})["bottom"]
+    pad_left = cfg.get("padding", {})["left"]
+    column_gap = cfg["column_gap"]
 
     edge_layer = get_or_create_layer(inkdoc, "Edge")
 
@@ -96,4 +96,4 @@ def render_edge_zone(inkdoc, route53_public_zones, cloudfront_distributions, x, 
 def get_bottom_spacing(config=None):
     """Get the spacing below the Edge zone before regions."""
     cfg = _get_cfg(config)
-    return cfg.get("bottom_spacing", DEFAULT_BOTTOM_SPACING)
+    return cfg["bottom_spacing"]

@@ -1,10 +1,12 @@
 ---
 # inkscape-cloud-architect-z23q
 title: '90 config restructure: single source of truth (debt)'
-status: todo
+status: completed
 type: task
+priority: normal
+openspec-link: openspec/changes/archive/2026-06-15-config-restructure
 created_at: 2026-06-10T13:27:32Z
-updated_at: 2026-06-10T13:27:32Z
+updated_at: 2026-06-15T14:20:00Z
 parent: inkscape-cloud-architect-muex
 blocked_by:
     - inkscape-cloud-architect-0v86
