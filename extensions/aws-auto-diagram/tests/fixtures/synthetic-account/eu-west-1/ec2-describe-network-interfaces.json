@@ -1,0 +1,10 @@
+{
+  "NetworkInterfaces": [
+    {
+      "InterfaceType": "nat_gateway",
+      "Description": "Interface for NAT Gateway nat-00000000000000001",
+      "SubnetId": "subnet-00000000000000001",
+      "VpcId": "vpc-00000000000000001"
+    }
+  ]
+}

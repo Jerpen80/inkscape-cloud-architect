@@ -1,0 +1,13 @@
+{
+  "DistributionList": {
+    "Items": [
+      {
+        "Id": "EDEMO00000001",
+        "DomainName": "d111111abcdef8.cloudfront.test",
+        "Aliases": { "Items": ["www.example.test"] },
+        "Comment": "demo distribution",
+        "Status": "Deployed"
+      }
+    ]
+  }
+}

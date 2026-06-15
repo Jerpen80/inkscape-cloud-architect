@@ -1,0 +1,6 @@
+{
+  "Buckets": [
+    { "Name": "demo-assets-bucket" },
+    { "Name": "demo-backups-bucket" }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "HostedZones": [
+    {
+      "Id": "/hostedzone/Z0000000000000000PUB",
+      "Name": "example.test.",
+      "Config": { "PrivateZone": false },
+      "ResourceRecordSetCount": 7
+    },
+    {
+      "Id": "/hostedzone/Z0000000000000000PRV",
+      "Name": "internal.example.test.",
+      "Config": { "PrivateZone": true },
+      "ResourceRecordSetCount": 3
+    }
+  ]
+}

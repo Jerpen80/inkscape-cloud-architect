@@ -1,0 +1,14 @@
+{
+  "LoadBalancers": [
+    {
+      "LoadBalancerName": "demo-alb",
+      "Type": "application",
+      "Scheme": "internet-facing",
+      "VpcId": "vpc-00000000000000001",
+      "AvailabilityZones": [
+        { "SubnetId": "subnet-00000000000000001" },
+        { "SubnetId": "subnet-00000000000000002" }
+      ]
+    }
+  ]
+}

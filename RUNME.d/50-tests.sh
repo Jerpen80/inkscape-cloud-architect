@@ -112,6 +112,11 @@ test_ica_cli(){
   python3 "$RUNME_DIR/extensions/aws-auto-diagram/tests/test_ica_cli.py"
 }
 
+make_command "test_render_fixture" "Test: render the synthetic fixture; assert output structure."
+test_render_fixture(){
+  python3 "$RUNME_DIR/extensions/aws-auto-diagram/tests/test_render_fixture.py"
+}
+
 make_command "test_all" "Run all tests."
 test_all(){
   local failed=0
@@ -120,6 +125,7 @@ test_all(){
   test_install || failed=1
   test_config_schema || failed=1
   test_ica_cli || failed=1
+  test_render_fixture || failed=1
   if [[ $failed -eq 0 ]]; then
     echo -e "\nAll tests passed."
   else

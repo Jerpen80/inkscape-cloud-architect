@@ -1,10 +1,12 @@
 ---
 # inkscape-cloud-architect-3k05
 title: 40 safe IO defaults + synthetic fixtures
-status: todo
+status: completed
 type: task
+priority: normal
+openspec-link: openspec/changes/archive/2026-06-15-synthetic-fixtures
 created_at: 2026-06-10T13:27:06Z
-updated_at: 2026-06-10T13:27:06Z
+updated_at: 2026-06-15T14:00:00Z
 parent: inkscape-cloud-architect-muex
 blocked_by:
     - inkscape-cloud-architect-fy5b

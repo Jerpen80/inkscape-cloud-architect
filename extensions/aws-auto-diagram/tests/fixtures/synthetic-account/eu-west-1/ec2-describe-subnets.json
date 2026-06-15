@@ -1,0 +1,36 @@
+{
+  "Subnets": [
+    {
+      "SubnetId": "subnet-00000000000000001",
+      "VpcId": "vpc-00000000000000001",
+      "CidrBlock": "10.0.1.0/24",
+      "AvailabilityZone": "eu-west-1a",
+      "MapPublicIpOnLaunch": true,
+      "Tags": [{ "Key": "Name", "Value": "demo-public-1a" }]
+    },
+    {
+      "SubnetId": "subnet-00000000000000002",
+      "VpcId": "vpc-00000000000000001",
+      "CidrBlock": "10.0.2.0/24",
+      "AvailabilityZone": "eu-west-1b",
+      "MapPublicIpOnLaunch": true,
+      "Tags": [{ "Key": "Name", "Value": "demo-public-1b" }]
+    },
+    {
+      "SubnetId": "subnet-00000000000000003",
+      "VpcId": "vpc-00000000000000001",
+      "CidrBlock": "10.0.11.0/24",
+      "AvailabilityZone": "eu-west-1a",
+      "MapPublicIpOnLaunch": false,
+      "Tags": [{ "Key": "Name", "Value": "demo-private-1a" }]
+    },
+    {
+      "SubnetId": "subnet-00000000000000004",
+      "VpcId": "vpc-00000000000000001",
+      "CidrBlock": "10.0.12.0/24",
+      "AvailabilityZone": "eu-west-1b",
+      "MapPublicIpOnLaunch": false,
+      "Tags": [{ "Key": "Name", "Value": "demo-private-1b" }]
+    }
+  ]
+}

@@ -14,6 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     rewrites the changelog, commits, tags, pushes, and creates a GitHub Release.
     Works with both git and jj.
   - See [proposal](openspec/changes/archive/2026-06-12-release-management/proposal.md).
+- **synthetic test fixture** — customer-data-free render regression suite
+  - A hand-authored, provably-fake account (`tests/fixtures/synthetic-account/`)
+    exercising every renderer, plus a structural test (`test_render_fixture`,
+    in `test_all`) that asserts the rendered SVG's shape. No real account-data.
+  - See [proposal](openspec/changes/archive/2026-06-12-synthetic-fixtures/proposal.md).
 
 ## [2.0.0] - 2026-06-12
 

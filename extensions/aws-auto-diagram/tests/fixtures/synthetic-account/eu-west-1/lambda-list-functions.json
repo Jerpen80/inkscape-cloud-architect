@@ -1,0 +1,17 @@
+{
+  "Functions": [
+    {
+      "FunctionName": "demo-vpc-worker",
+      "Runtime": "python3.12",
+      "VpcConfig": {
+        "VpcId": "vpc-00000000000000001",
+        "SubnetIds": ["subnet-00000000000000003", "subnet-00000000000000004"]
+      }
+    },
+    {
+      "FunctionName": "demo-global-fn",
+      "Runtime": "nodejs20.x",
+      "VpcConfig": {}
+    }
+  ]
+}

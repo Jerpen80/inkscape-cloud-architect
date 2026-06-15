@@ -1,0 +1,10 @@
+{
+  "CacheClusters": [
+    {
+      "CacheClusterId": "demo-redis",
+      "Engine": "redis",
+      "CacheNodeType": "cache.t3.micro",
+      "PreferredAvailabilityZone": "eu-west-1b"
+    }
+  ]
+}

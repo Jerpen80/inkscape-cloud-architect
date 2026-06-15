@@ -1,0 +1,40 @@
+{
+  "Reservations": [
+    {
+      "Instances": [
+        {
+          "InstanceId": "i-00000000000000001",
+          "InstanceType": "t3.micro",
+          "SubnetId": "subnet-00000000000000003",
+          "VpcId": "vpc-00000000000000001",
+          "State": { "Name": "running" },
+          "Tags": [{ "Key": "Name", "Value": "demo-app-server" }]
+        },
+        {
+          "InstanceId": "i-00000000000000002",
+          "InstanceType": "t3.small",
+          "SubnetId": "subnet-00000000000000004",
+          "VpcId": "vpc-00000000000000001",
+          "State": { "Name": "stopped" },
+          "Tags": [{ "Key": "Name", "Value": "demo-stopped" }]
+        },
+        {
+          "InstanceId": "i-00000000000000010",
+          "InstanceType": "t3.micro",
+          "SubnetId": "subnet-00000000000000003",
+          "VpcId": "vpc-00000000000000001",
+          "State": { "Name": "running" },
+          "Tags": [{ "Key": "Name", "Value": "demo-asg-node-1" }]
+        },
+        {
+          "InstanceId": "i-00000000000000011",
+          "InstanceType": "t3.micro",
+          "SubnetId": "subnet-00000000000000004",
+          "VpcId": "vpc-00000000000000001",
+          "State": { "Name": "running" },
+          "Tags": [{ "Key": "Name", "Value": "demo-asg-node-2" }]
+        }
+      ]
+    }
+  ]
+}

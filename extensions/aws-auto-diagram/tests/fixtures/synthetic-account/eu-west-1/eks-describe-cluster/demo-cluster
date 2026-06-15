@@ -1,0 +1,11 @@
+{
+  "cluster": {
+    "name": "demo-cluster",
+    "version": "1.29",
+    "status": "ACTIVE",
+    "resourcesVpcConfig": {
+      "vpcId": "vpc-00000000000000001",
+      "subnetIds": ["subnet-00000000000000003", "subnet-00000000000000004"]
+    }
+  }
+}

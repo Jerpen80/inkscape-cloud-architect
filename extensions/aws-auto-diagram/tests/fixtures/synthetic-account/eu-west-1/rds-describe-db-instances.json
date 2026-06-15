@@ -1,0 +1,23 @@
+{
+  "DBInstances": [
+    {
+      "DBInstanceIdentifier": "demo-postgres",
+      "Engine": "postgres",
+      "DBInstanceClass": "db.t3.micro",
+      "AvailabilityZone": "eu-west-1a",
+      "DBSubnetGroup": {
+        "VpcId": "vpc-00000000000000001",
+        "Subnets": [
+          {
+            "SubnetIdentifier": "subnet-00000000000000003",
+            "SubnetAvailabilityZone": { "Name": "eu-west-1a" }
+          },
+          {
+            "SubnetIdentifier": "subnet-00000000000000004",
+            "SubnetAvailabilityZone": { "Name": "eu-west-1b" }
+          }
+        ]
+      }
+    }
+  ]
+}

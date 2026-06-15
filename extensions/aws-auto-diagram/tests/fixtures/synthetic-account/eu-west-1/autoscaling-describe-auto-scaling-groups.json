@@ -1,0 +1,15 @@
+{
+  "AutoScalingGroups": [
+    {
+      "AutoScalingGroupName": "demo-asg",
+      "MinSize": 1,
+      "MaxSize": 3,
+      "DesiredCapacity": 2,
+      "VPCZoneIdentifier": "subnet-00000000000000003,subnet-00000000000000004",
+      "Instances": [
+        { "InstanceId": "i-00000000000000010", "LifecycleState": "InService" },
+        { "InstanceId": "i-00000000000000011", "LifecycleState": "InService" }
+      ]
+    }
+  ]
+}
