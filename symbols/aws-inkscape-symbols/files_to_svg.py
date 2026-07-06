@@ -47,7 +47,7 @@ def read_component(filename):
         root.remove(rt)
     for desc in root.findall('{http://www.w3.org/2000/svg}desc'):
         root.remove(desc)
-    for group in root.find('{http://www.w3.org/2000/svg}g'):
+    for group in root.findall('.//{http://www.w3.org/2000/svg}g'):
         fill = group.get('fill')
         if fill and fill.startswith('url(#'):
             group.set('fill', fill.replace('url(#', f'url(#{symbol_id}-'))
