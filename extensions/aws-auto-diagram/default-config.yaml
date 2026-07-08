@@ -2,7 +2,7 @@ document:
   margin: 20
 theme:
   light:
-    background: none
+    background: '#FFFFFF'
     text_color: '#000000'
     text_dimmed_opacity: 0.6
     border_account: '#000000'
